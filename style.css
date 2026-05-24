@@ -1,27 +1,174 @@
 /*
- * ===============================================================
- *  ██ ▄█▀ ██ ██     ██ ██      ██ ▄████▄ ██ ▄█▀ ██████ 
- *  ████   ██ ██ ▄█▄ ██ ██      ██ ██▄▄██ ████   ██▄▄   
- *  ██ ▀█▄ ██  ▀██▀██▀  ██   ████▀ ██  ██ ██ ▀█▄ ██▄▄▄▄ 
- * ===============================================================
- *  File      : style.css
- *  Project   : KiwiJake.github.io
- *  Author    : KIWI JAKE
- *  Created   : Mon May 11 2026
- *  Modified  : Mon May 11 2026
- * ===============================================================
- */
+===============================================================
+ ██ ▄█▀ ██ ██     ██ ██      ██ ▄████▄ ██ ▄█▀ ██████ 
+ ████   ██ ██ ▄█▄ ██ ██      ██ ██▄▄██ ████   ██▄▄   
+ ██ ▀█▄ ██  ▀██▀██▀  ██   ████▀ ██  ██ ██ ▀█▄ ██▄▄▄▄ 
+===============================================================
+ File      : style.css
+ Project   : KiwiJake.github.io
+ Author    : KIWI JAKE
+ Created   : Mon May 11 2026
+ Modified  : Sun May 24 2026
+===============================================================
+*/
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ── RESET & BASE ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { min-height: 100%; width: 100%; scroll-behavior: smooth; }
 
 body {
-    
-    width: 100%;
-    height: 100%;
-    background: black;
-    overflow: hidden;
+  background: black;
+  overflow-x: hidden;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* ── MATRIX CANVAS ── */
+#Matrix {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  display: block;
+}
+
+/* ── OVERLAY CONTENT ── */
+#overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 60px;
+}
+
+/* ── NAV ── */
+.nav-bar {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 11px;
+  color: #3aff3a;
+  letter-spacing: 2px;
+  padding: 0 4px;
+}
+.nav-links { display: flex; gap: 20px; }
+.nav-links a { color: #5dff5d; text-decoration: none; }
+.nav-links a:hover { color: #c8ff9e; }
+
+/* ── NFO CARD ── */
+.nfo {
+  width: 100%;
+  max-width: 800px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c8ff9e;
+  background: rgba(10, 15, 10, 0.82);
+  border: 1px solid #2a4a2a;
+  border-radius: 8px;
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.nfo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
+  pointer-events: none;
+  z-index: 0;
+}
+.scanline {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: rgba(100,255,100,0.05);
+  animation: scan 7s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes scan { 0% { top: -4px } 100% { top: 100% } }
+.inner { position: relative; z-index: 2; }
+
+/* ── TYPOGRAPHY ── */
+.art {
+  font-size: 11px;
+  line-height: 1.35;
+  white-space: pre;
+  color: #3aff3a;
+  text-shadow: 0 0 10px rgba(80,255,80,0.35);
+  overflow-x: auto;
+}
+.subtitle {
+  color: #a0ff70;
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin: 12px 0 8px;
+  text-align: center;
+}
+.rule { color: #1e3a1e; margin: 12px 0; }
+.field { display: flex; gap: 8px; margin: 3px 0; flex-wrap: wrap; }
+.label { color: #5dff5d; white-space: nowrap; }
+.val { color: #c8ff9e; }
+.bright { color: #efffef; }
+.section-head {
+  color: #3aff3a;
+  font-size: 11px;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #1a3a1a;
+  padding-bottom: 4px;
+  margin: 16px 0 10px;
+}
+.dim { color: #4a7a4a; }
+.info { color: #7aff7a; }
+.accent { color: #a8ff68; }
+.install-steps { display: flex; flex-direction: column; gap: 4px; }
+.step { display: flex; gap: 10px; }
+.step-num { color: #2a5a2a; }
+.step-txt { color: #7aff7a; }
+.req-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px 24px;
+  margin: 4px 0;
+}
+.req-line { display: flex; gap: 8px; }
+.status-line { display: flex; gap: 8px; align-items: center; margin: 3px 0; }
+.blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0 } }
+.glow { text-shadow: 0 0 10px rgba(80,255,80,0.5); }
+.footer-bar {
+  text-align: center;
+  margin-top: 14px;
+  color: #3aff3a;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* ── CONTACT ROW (shared layout) ── */
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  flex-wrap: wrap;
+}
+
+/* ── CONTACT BUTTON (shared style) ── */
+.contact-btn {
+  color: #c8ff9e;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+
+.contact-btn:hover {
+  color: #efffef;
 }

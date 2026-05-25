@@ -33,6 +33,7 @@
     <div class="nav-bar">
       <span class="glow">[ WELCOME ]</span>
       <div class="nav-links">
+        <a href="#projects-section">PROJECTS</a>
         <a href="#contact-section">CONTACT</a>
       </div>
     </div>
@@ -95,6 +96,48 @@
 
         <div class="status-line"><span class="label">STATUS.....[ </span><span class="accent blink">ACTIVE</span><span class="label"> ]</span></div>
         <div class="status-line"><span class="label">GROUP......[ </span><span class="bright glow">KIWI</span><span class="label"> ]</span></div>
+
+        <div class="rule">────────────────────────────────────────────────────────────</div>
+        <div class="section-head" id="projects-section">PROJECTS</div>
+
+        <div class="project-entry">
+          <div class="project-meta">
+            <span class="label">TITLE.....:</span><span class="val">YOUR GAME TITLE HERE</span>
+          </div>
+          <div class="project-meta">
+            <span class="label">ENGINE....:</span><span class="val">GODOT</span>
+          </div>
+          <div class="project-meta">
+            <span class="label">TYPE......:</span><span class="val">GAME</span>
+          </div>
+          <div class="project-desc dim">A GODOT game</div>
+          <div class="project-launch">
+            <button class="launch-btn" onclick="openGame()">
+              <span class="launch-arrow">&gt;</span> LAUNCH GAME
+            </button>
+            <span class="dim">[ click to play in browser ]</span>
+          </div>
+        </div>
+
+        <!-- Game Modal -->
+        <div id="game-modal" class="game-modal" onclick="closeGameOnBackdrop(event)">
+          <div class="game-modal-inner">
+            <div class="game-modal-header">
+              <span class="label">// RUNNING: <span class="accent">VERSION 01</span></span>
+              <button class="modal-close" onclick="closeGame()">[ X CLOSE ]</button>
+            </div>
+            <div class="game-frame-wrap">
+              <iframe
+                id="game-iframe"
+                src=""
+                data-src="Godot/index.html"
+                allowfullscreen
+                allow="autoplay; fullscreen"
+                title="Game"
+              ></iframe>
+            </div>
+          </div>
+        </div>
 
         <div class="rule">────────────────────────────────────────────────────────────</div>
         <div class="section-head" id="contact-section">CONTACT</div>

@@ -59,31 +59,9 @@ const draw = () => {
 
 setInterval(draw, 30);
 
-// ── GAME MODAL ──
+// ── GAME ──
 function openGame() {
-  const modal = document.getElementById('game-modal');
-  const iframe = document.getElementById('game-iframe');
-  // Lazy-load the src on first open
-  if (!iframe.src || iframe.src === window.location.href) {
-    iframe.src = iframe.dataset.src;
-  }
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  window.open('Godot/index.html', '_blank');
 }
-
-function closeGame() {
-  const modal = document.getElementById('game-modal');
-  modal.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function closeGameOnBackdrop(e) {
-  if (e.target === document.getElementById('game-modal')) closeGame();
-}
-
-// Close with Escape key
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeGame();
-});
 
 
